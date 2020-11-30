@@ -6,7 +6,11 @@
     state: present
 
 - name: Update smartctl so we can run it as a user
-  command: chmod +s /usr/sbin/smartctl
+  file:
+    path: /usr/sbin/smartctl
+    owner: root
+    group: root
+    mode: "+s"
 
 - name: Use datadogs built in pip command to install pysmart
   command: /opt/datadog-agent/embedded/bin/pip install pysmart
